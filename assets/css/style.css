@@ -7780,15 +7780,23 @@ section.contact_area.inner_section {
 .icon-gradient i {
   font-size: 55px;
   display: inline-block;
-  background: linear-gradient(135deg, #f15a22, #ff8c42);
+  background: #003C3C;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: #fff;
-  transition: transform 0.3s ease;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.4s ease;
+}
+
+.icon-gradient i:hover {
+  background: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.1);
 }
 
 .feature_item:hover .icon-gradient i {
   transform: scale(1.1);
 }
+
  .feature_item.style_two {
     background: linear-gradient(90deg, #ff8c42 0%, #f15a22 100%);
     border-radius: 10px;
@@ -9303,4 +9311,24 @@ button.close-search i {
   color: #F36328 !important;
   font-weight: 900;
   line-height: 1.2;
+}
+
+.consalt2_btn a {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 30px;
+    display: inline-block;
+    background: #0C6E6D;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border: none;
 }
