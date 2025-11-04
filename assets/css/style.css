@@ -4510,15 +4510,52 @@ section.footer_area.style_three {
 
 
 section.hero_area.style_four {
-    background: url(../images/gallery/1.jpg);
-    height: 800px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+  position: relative;
+  background: url(../images/gallery/1.jpg);
+  height: 800px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  z-index: 1;
 }
+
 section.hero_area.style_four.bannner_two {
-    background: url("../images/gallery/2.jpg");
+  background: url("../images/gallery/2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  z-index: 1;
 }
+
+
+section.hero_area.style_four::before,
+section.hero_area.style_four.bannner_two::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.45)
+  );
+}
+
+
+.hero_content.style_four {
+  position: relative;
+  z-index: 2;
+}
+
+
+@media (max-width: 768px) {
+  section.hero_area.style_four {
+    height: 600px;
+  }
+}
+
 section.hero_area.style_four .hero_content {
     margin-top: 0;
 }
@@ -9261,3 +9298,8 @@ button.close-search i {
     background-color:#0C6E6D ;
 }
 
+.hero_area.style_four .hero_content h1 {
+  color: #F36328 !important;
+  font-weight: 900;
+  line-height: 1.2;
+}
