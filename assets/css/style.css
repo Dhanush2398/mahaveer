@@ -9342,3 +9342,22 @@ button.close-search i {
     transition: 0.4s;
     border: none;
 }
+
+
+.icon-gradient i {
+  font-size: 50px;
+  display: inline-block;
+  background: linear-gradient(135deg, #F36328, #FF8C42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.feature_item:hover .icon-gradient i {
+  font-size: 50px;
+  display: inline-block;
+  background: linear-gradient(135deg, #F36328, #FF8C42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
