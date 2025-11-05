@@ -54,7 +54,16 @@
 52. Start Error area css
 53. All Animation CSS
 =======================*/
-
+body {
+  font-family: 'Poppins', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+p, span, li, a {
+  font-family: 'Roboto', sans-serif;
+}
 /*---=====================================================
    <!--Consalt Header Area Css-->
 =========================================================---*/
