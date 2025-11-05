@@ -5659,7 +5659,7 @@ section.feature_area.style_four {
 .feature_item.style_four .feature_content h3 {
     transition: .5s;
     font-size: 22px;
-    color: #000!important;
+    color: #fff!important;
     font-weight: 600;
     margin: 20px 0 13px;
 }
@@ -7789,7 +7789,7 @@ section.contact_area.inner_section {
 .icon-gradient i {
   font-size: 55px;
   display: inline-block;
-  background: #003C3C;
+  background: #fff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.4s ease;
@@ -7807,7 +7807,7 @@ section.contact_area.inner_section {
 }
 
  .feature_item.style_two {
-    background: linear-gradient(90deg, #ff8c42 0%, #f15a22 100%);
+    background: #003C3C;
     border-radius: 10px;
     filter: drop-shadow(0px 5px 30px rgba(171,199,198,0.3));
     padding: 35px 25px 25px 35px;
