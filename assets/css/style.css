@@ -1410,6 +1410,7 @@ section.pricing-area .section_title p {
 
 section.case-study-area {
     padding: 85px 0 35px;
+    background-color: #0C6E6D;
 }
 
 .case-study-thumb {
@@ -1799,7 +1800,7 @@ section.team_area {
 ============================================================ */
 .footer_area {
     background: linear-gradient(90deg, #f15a22 0%, #ff8c42 100%);
-    padding: 120px 0 30px;
+    padding: 10px 0 30px;
     border-radius: 30px;
 }
 p.footer_desc {
@@ -7371,7 +7372,7 @@ a.active {
 }
 .prot-text h3 a {
     font-size: 34px;
-    color: #063232;
+    color: #fff;
     font-weight: 600;
     display: inline-block;
 }
