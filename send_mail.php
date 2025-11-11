@@ -3,6 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $to = "kakrishnani208@gmail.com";
     $subject = "New Mahila Pragathi Loan Application";
 
+    // Collect form details
     $message = "
     <h2>New Loan Application Details</h2>
     <p><b>Full Name:</b> {$_POST['full_name']}</p>
@@ -20,15 +21,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <p><b>Yearly Income:</b> {$_POST['income']}</p>
     <p><b>Manufacturing Activity:</b> {$_POST['activity']}</p>
     <p><b>Factory Place:</b> {$_POST['factory']}</p>
+    <p><b>Location Link:</b> {$_POST['location']}</p>
     ";
 
-    $headers = "From: noreply@yourdomain.com\r\n";
-    $headers .= "Content-type: text/html\r\n";
+    // Create boundary
+    $boundary = md5(time());
 
-    if (mail($to, $subject, $message, $headers)) {
-        echo "<script>alert('Application sent successfully!'); window.location.href='index.html';</script>";
+    // Email headers
+    $headers .= "CC: kakrishnani208@gmail.com\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"{$boundary}\"\r\n";
+
+    // Message body
+    $body = "--{$boundary}\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+    $body .= $message . "\r\n";
+
+    // File upload fields
+    $file_fields = [
+        'passport_photo' => 'Passport Photo',
+        'aadhaar' => 'Aadhaar Card',
+        'pan' => 'PAN Card',
+        'caste_certificate' => 'Caste Certificate',
+        'bank_passbook' => 'Bank Passbook',
+        'work_photo' => 'Work Photo',
+        'residence_photo' => 'Residence Photo',
+        'gps_photo' => 'Workplace GPS Photo'
+    ];
+
+    // Handle single file uploads
+    foreach ($file_fields as $field => $label) {
+        if (!empty($_FILES[$field]['tmp_name'])) {
+            $file_tmp = $_FILES[$field]['tmp_name'];
+            $file_name = $_FILES[$field]['name'];
+            $file_data = chunk_split(base64_encode(file_get_contents($file_tmp)));
+
+            $body .= "--{$boundary}\r\n";
+            $body .= "Content-Type: application/octet-stream; name=\"{$file_name}\"\r\n";
+            $body .= "Content-Disposition: attachment; filename=\"{$label} - {$file_name}\"\r\n";
+            $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+            $body .= $file_data . "\r\n";
+        }
+    }
+
+    // Handle multiple 'other_docs[]'
+    if (!empty($_FILES['other_docs']['name'][0])) {
+        foreach ($_FILES['other_docs']['tmp_name'] as $i => $tmp_name) {
+            if (!empty($tmp_name)) {
+                $file_name = $_FILES['other_docs']['name'][$i];
+                $file_data = chunk_split(base64_encode(file_get_contents($tmp_name)));
+
+                $body .= "--{$boundary}\r\n";
+                $body .= "Content-Type: application/octet-stream; name=\"{$file_name}\"\r\n";
+                $body .= "Content-Disposition: attachment; filename=\"Other Document - {$file_name}\"\r\n";
+                $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+                $body .= $file_data . "\r\n";
+            }
+        }
+    }
+
+    $body .= "--{$boundary}--";
+
+    // Send mail
+    if (mail($to, $subject, $body, $headers)) {
+        header("Location: thankyou.html");
+        exit;
     } else {
-        echo "<script>alert('Failed to send. Please try again.'); window.history.back();</script>";
+        echo "<h3>There was an error sending your application. Please try again later.</h3>";
     }
 }
 ?>
